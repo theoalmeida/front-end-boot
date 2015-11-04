@@ -7,8 +7,14 @@
 *.jar
 *.war
 *.ear
-/target
-/target/*.*
 *.idea
 *.mvn
+classpath
+.project
+.settings/
+*/target/**
+*/target/*
 .settings/*.*
+*/.settings/*
+**/.settings/**
+.idea/workspace.xml
