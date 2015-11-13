@@ -1,7 +1,11 @@
 "use strict";
 
-app.controller('userController', ['$scope', 'vcRecaptchaService', 'userService', function ($scope, recaptcha, userService) {
-                console.log("this is your app's controller");
+app.controller('userController', [
+    '$scope',
+    'vcRecaptchaService',
+    'userService',
+    '$timeout',
+     function ($scope, recaptcha, userService, $timeout) {
 
                 $scope.response = null;
                 $scope.widgetId = null;
@@ -16,28 +20,33 @@ app.controller('userController', ['$scope', 'vcRecaptchaService', 'userService',
                 };
                 $scope.cbExpiration = function() {
                     $scope.response = null;
-                 };
+                };
+
                 $scope.submit = function (form, user) {
 
                     if(form.$valid) {
 
                       userService.addUser($scope).then(function(message) {
-                         showMessage(message);
+                        if(message.status >= 200 || message.status <= 300) {
+                            showMessage(message);
+                            $timeout(window.location.href = 'index.html', 3000);
+                        }else{
+                            showMessage(message);
+                        }
+
                       });
                     }
 
                     if (true) {
-                        console.log('Success');
+
                     } else {
                         console.log('Failed validation');
-                        // In case of a failed validation you need to reload the captcha
-                        // because each response can be checked just once
                         vcRecaptchaService.reload($scope.widgetId);
                     }
                 };
 
                 function showMessage(response) {
-                	$scope.messages=response;
+                	$scope.messages=response.message;
                 }
 
 

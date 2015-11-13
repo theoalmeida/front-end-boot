@@ -10,8 +10,6 @@ import java.io.Serializable;
  * Created by theo on 04/11/15.
  */
 
-@Component
-@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 public class Message implements Serializable {
 
     private TypeMessage typeMessage;

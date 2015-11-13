@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="theo" id="1">
+        <createTable schemaName="cupcake" tableName="users">
+            <column name="username" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(150)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="enable" type="varchar(5)"/>
+            <column name="name" type="varchar(150)"/>
+        </createTable>
+
+        <createTable schemaName="cupcake" tableName="authorities">
+            <column name="username" type="varchar(50)" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="authority" type="varchar(50)"/>
+        </createTable>
+
+        <createIndex indexName="authorities_idx" unique="true"
+                     tableName="authorities">
+            <column name="username"/>
+            <column name="authority" type="varchar(50)"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet author="theo" id="2">
+        <addForeignKeyConstraint baseColumnNames="username"
+                                 baseTableName="authorities"
+                                 constraintName="fk_authorities_username_user"
+                                 referencedTableName="users"
+                                 referencedColumnNames="username"/>
+    </changeSet>
+
+</databaseChangeLog>
+

@@ -1,5 +1,7 @@
 package com.almeida.commons;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -19,10 +21,9 @@ import java.util.List;
 @Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 public class ResponseMessage implements Serializable {
 
-    @Autowired
-    private List<Message> message;
+    private List<Message> message = new ArrayList<>();
 
-    public void setMessages(BindingResult bindingResult) {
+    public void addMessage(BindingResult bindingResult) {
         bindingResult.getFieldError().toString();
         for (ObjectError error : bindingResult.getAllErrors()) {
             this.message.add(new Message("Campo :" + bindingResult.getFieldError().getField() + " : " + bindingResult.getFieldError().getDefaultMessage(),
@@ -30,14 +31,15 @@ public class ResponseMessage implements Serializable {
         }
     }
 
-    public void setMessages(String message, TypeMessage typeMessage) {
+    public void addMessage(String message, TypeMessage typeMessage) {
         this.message.add(new Message(message, typeMessage));
-
     }
 
     public List<Message> getMessage() {
         return message;
     }
 
-
+    public void setMessage(List<Message> message) {
+        this.message = message;
+    }
 }

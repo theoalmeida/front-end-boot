@@ -1,65 +1,38 @@
 package com.almeida.entity.user;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
-public class User {
+@Table(name = "users")
+public class User implements Serializable{
+
+    private static final long serialVersionUID = 5629818664499654211L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "name")
+    private  String name;
 
     @Column(name = "email")
     private String email;
-
-    @Column(name = "firstname")
-    @Size(min=2, max=30)
-    private String firstName;
-
-    @Column(name = "lastname")
-    private String lastName;
 
     @NotNull
     @Column(name = "password")
     private String password;
 
-    @Column(name = "username")
-    private String userName;
-
-    @Column
+    @Column(name = "enable")
     private Boolean enabled;
 
     @Transient
-    @NotNull
+
     private String captchaValue;
 
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-        this.userName = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -70,17 +43,8 @@ public class User {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public Boolean getEnabled() {
@@ -97,5 +61,17 @@ public class User {
 
     public void setCaptchaValue(String captchaValue) {
         this.captchaValue = captchaValue;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
