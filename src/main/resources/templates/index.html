@@ -10,10 +10,10 @@
 	
 	<div th:include="fragments/alert :: alert"></div>
 
-	</div>
-		<label th:text="${session.username}"> teste</label>
+	<div ng-view></div>
 
-	</div>
+	<ng-include src="'contacts.html'"></ng-include>
+
 
 </body>
 

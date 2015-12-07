@@ -24,9 +24,13 @@ public class SessionAttributesFIlter implements Filter {
         HttpServletRequest request1 = (HttpServletRequest) request;
         HttpSession session;
         session = request1.getSession();
-
         addUserName(session);
+        verifyDDOSAtack();
         chain.doFilter(request, response);
+    }
+
+    private void verifyDDOSAtack() {
+        System.out.print("");
     }
 
     private void addUserName(HttpSession session) {

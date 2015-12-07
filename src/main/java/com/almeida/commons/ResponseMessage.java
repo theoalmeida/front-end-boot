@@ -21,7 +21,7 @@ import java.util.List;
 @Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 public class ResponseMessage implements Serializable {
 
-    private List<Message> message = new ArrayList<>();
+    private List<Message> message = new ArrayList<Message>();
 
     public void addMessage(BindingResult bindingResult) {
         bindingResult.getFieldError().toString();

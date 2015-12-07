@@ -6,12 +6,9 @@ import com.almeida.entity.user.Role;
 import com.almeida.entity.user.User;
 import com.almeida.repository.AuthorityRepository;
 import com.almeida.repository.UserRepository;
-import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -20,10 +17,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * Created by theo on 04/11/15.
@@ -50,9 +43,9 @@ public class UserService {
     @Transactional
     public User save(User user) {
         user.setEnabled(Boolean.TRUE);
-        User savedUser =  this.userRepository.save(user);
+        User savedUser = this.userRepository.save(user);
         this.authorityRepository.save(new Authorities(Role.ROLE_USER, user.getUsername()));
-        return  savedUser;
+        return savedUser;
     }
 
     public void addUserToSession(User savedUser) {
@@ -63,7 +56,7 @@ public class UserService {
 
     public Boolean isRobootAtack(String response) {
 
-        if(response == null){
+        if (response == null) {
             return Boolean.TRUE;
         }
 

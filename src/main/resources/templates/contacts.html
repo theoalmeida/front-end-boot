@@ -1,0 +1,38 @@
+<script type="text/ng-template" id="contacts">
+    <form class="form-horizontal">
+        <fieldset>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="margin-left: 20px" for="textinput">Rua</label>
+
+                <div class="col-md-5">
+                    <input id="textinput" name="textinput" type="text" placeholder="Rua" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput" style="margin-left: 20px">Cidade</label>
+
+                <div class="col-md-4">
+                    <input id="textinput" name="textinput" type="text" placeholder="Cidade da residencia"
+                           class="form-control input-md" required="">
+
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="selectstate" style="margin-left: 20px">Estado</label>
+
+                <div class="col-md-2">
+                    <select id="selectstate" name="selectstate" class="form-control">
+                        <option value="SP">SP</option>
+                        <option value="RJ">RJ</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</script>

@@ -5,12 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class PageViewController {
 
     @RequestMapping(value = "/index")
     public String index(Model model) {
-        model.addAttribute("name", "Theo");
         return "index";
+    }
+
+    @RequestMapping(value = "/contacts")
+    public String contacts(Model model) {
+        return "contacts";
     }
 
     @RequestMapping(value = "/registeruser")

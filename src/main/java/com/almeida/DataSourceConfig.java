@@ -2,10 +2,12 @@ package com.almeida;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.transaction.support.TransactionTemplate;
 
 @Configuration
 @ComponentScan
@@ -50,5 +52,6 @@ public class DataSourceConfig {
         ds.setPassword(password);
         return ds;
     }
+
 
 }
